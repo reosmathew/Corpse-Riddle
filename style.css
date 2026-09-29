@@ -28,11 +28,10 @@ body{
   font-size:18px;
   line-height:1.7;
   overflow-x:hidden;
-  cursor:none;
 }
 ::selection{background:var(--blood);color:var(--bone)}
 img{display:block;max-width:100%}
-button{font:inherit;cursor:none}
+button{font:inherit;cursor:pointer}
 a{color:var(--blood-bright)}
 
 /* ---------- film grain + vignette ---------- */
@@ -67,14 +66,12 @@ body.lights-out .candle-row,body.lights-out .hud{opacity:.25;transition:opacity 
 }
 #captions.on{opacity:1}
 
-/* ---------- custom cursor ---------- */
-#cursorDot,#cursorGlow{position:fixed;top:0;left:0;z-index:130;pointer-events:none;border-radius:50%}
-#cursorDot{width:6px;height:6px;background:var(--bone);transform:translate(-50%,-50%);mix-blend-mode:difference}
+/* ---------- ambient candle-light that follows the cursor ---------- */
 #cursorGlow{
+  position:fixed;top:0;left:0;z-index:130;pointer-events:none;border-radius:50%;
   width:340px;height:340px;transform:translate(-50%,-50%);
   background:radial-gradient(circle,rgba(255,140,26,.10) 0%,rgba(255,140,26,.04) 35%,transparent 70%);
 }
-@media (hover:none){#cursorDot,#cursorGlow{display:none}body{cursor:auto}button{cursor:pointer}}
 
 /* ---------- letterbox ---------- */
 .letterbox{position:fixed;left:0;right:0;height:0;background:#000;z-index:50;transition:height 1.2s cubic-bezier(.7,0,.3,1)}
@@ -85,11 +82,11 @@ body.in-chamber .letterbox{height:7vh}
 #gate{
   position:fixed;inset:0;z-index:100;background:
     radial-gradient(ellipse at 50% 120%,#120a06 0%,#040504 60%),#040504;
-  display:flex;align-items:center;justify-content:center;text-align:center;
+  display:flex;text-align:center;overflow-y:auto;
   transition:opacity 1.4s ease,visibility 1.4s;
 }
-#gate.open{opacity:0;visibility:hidden}
-.gate-inner{max-width:640px;padding:32px;position:relative}
+#gate.open{opacity:0;visibility:hidden;pointer-events:none}
+.gate-inner{max-width:640px;margin:auto;padding:56px 24px;position:relative}
 .candle-svg{width:70px;margin:0 auto 10px;animation:flick 3s infinite}
 @keyframes flick{0%,100%{transform:scaleY(1)}8%{transform:scaleY(.94)}22%{transform:scaleY(1.05)}47%{transform:scaleY(.9)}70%{transform:scaleY(1.03)}}
 .gate-title{
@@ -361,51 +358,15 @@ body.danger #timeNum{color:var(--blood-bright)}
 .panel.hidden{display:none}
 #nextBtn{margin-top:18px}
 
-/* ---------- commune chatbox ---------- */
-#commune{background:linear-gradient(180deg,var(--black),#0a0806 55%,var(--black))}
-.chat-wrap{max-width:780px}
-.chat-note{color:var(--bone-dim);font-style:italic;margin-bottom:30px}
-.chat-slate{
-  border:1px solid #2a241c;background:rgba(8,7,5,.85);box-shadow:0 30px 80px rgba(0,0,0,.8);
-  display:flex;flex-direction:column;overflow:hidden;
+/* ---------- premium touches ---------- */
+body.descend #blackout{opacity:.7;transition:opacity .18s ease}
+.cards .card:nth-child(2){transition-delay:.14s}
+.cards .card:nth-child(3){transition-delay:.28s}
+.legend-img img{will-change:transform}
+footer .statline{
+  font-family:var(--font-carve);letter-spacing:.3em;font-size:11px;color:#6b6353;
+  text-transform:uppercase;margin-top:16px;
 }
-.chat-head{
-  display:flex;justify-content:space-between;align-items:center;padding:14px 20px;
-  font-family:var(--font-carve);letter-spacing:.3em;font-size:12px;color:var(--gold);
-  border-bottom:1px solid #2a241c;background:linear-gradient(180deg,rgba(212,162,74,.06),transparent);
-}
-.chat-status{color:var(--bone-dim);letter-spacing:.15em;font-style:italic;text-transform:none}
-.chat-log{
-  height:300px;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:14px;
-  scrollbar-width:thin;scrollbar-color:#3a332a transparent;
-}
-.msg{
-  max-width:82%;padding:11px 16px;font-size:16px;line-height:1.55;
-  animation:msgrise .4s ease both;
-}
-@keyframes msgrise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.msg.user{
-  align-self:flex-end;border:1px solid #34302a;background:rgba(255,255,255,.03);
-  color:var(--bone);font-family:var(--font-fell);
-}
-.msg.vedhal{
-  align-self:flex-start;border:1px solid rgba(164,22,26,.5);border-left:3px solid var(--blood);
-  background:linear-gradient(180deg,rgba(164,22,26,.12),rgba(164,22,26,.04));
-  color:#e6d9c4;font-family:var(--font-fell);font-style:italic;
-}
-.chat-prompts{display:flex;flex-wrap:wrap;gap:10px;padding:0 20px 16px}
-.chat-prompts button{
-  padding:8px 16px;border:1px solid #34302a;background:rgba(255,255,255,.02);
-  color:var(--bone-dim);font-family:var(--font-carve);font-size:12px;letter-spacing:.12em;transition:all .3s;
-}
-.chat-prompts button:hover{border-color:var(--ember);color:var(--bone)}
-.chat-form{display:flex;gap:12px;padding:0 20px 20px}
-.chat-form input{
-  flex:1;background:#0b0a08;border:1px solid #2c2822;color:var(--bone);padding:12px 16px;
-  font-family:var(--font-fell);font-size:16px;outline:none;transition:border .3s;
-}
-.chat-form input:focus{border-color:var(--blood)}
-.chat-form input::placeholder{color:#57503f;font-style:italic}
 
 /* ---------- finale ---------- */
 #finale{

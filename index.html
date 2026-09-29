@@ -21,8 +21,7 @@
 <div id="vignette"></div>
 <div id="blackout"></div>
 <div id="captions" aria-live="polite"></div>
-<div id="cursorGlow"></div>
-<div id="cursorDot"></div>
+<div id="cursorGlow" aria-hidden="true"></div>
 <div class="letterbox top"></div>
 <div class="letterbox bottom"></div>
 
@@ -183,35 +182,11 @@
   </div>
 </section>
 
-<!-- ================= COMMUNE (chatbox) ================= -->
-<section id="commune">
-  <div class="wrap chat-wrap reveal">
-    <p class="kicker">A Chatbox From The Crypt</p>
-    <h2 class="big">Commune With the Vedhal</h2>
-    <p class="chat-note">He answers every fool who types. Choose a whisper, or write your own —
-      he will answer in voice, and his jaw will move with it.</p>
-    <div class="chat-slate">
-      <div class="chat-head">💀 THE VEDHAL <span class="chat-status" id="chatStatus">lurking…</span></div>
-      <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
-      <div class="chat-prompts">
-        <button type="button" data-q="Who are you?">👁 Who are you?</button>
-        <button type="button" data-q="Tell me of the tree">🌳 Tell me of the tree</button>
-        <button type="button" data-q="Spare me!">🙏 Spare me</button>
-        <button type="button" data-q="Make me laugh">😂 Make me laugh</button>
-        <button type="button" data-q="A hint, please">🕯 A hint</button>
-      </div>
-      <form id="chatForm" class="chat-form">
-        <input id="chatInput" type="text" autocomplete="off" placeholder="type to the dead…" aria-label="message to the Vedhal">
-        <button class="icon-btn" type="submit">Summon 🔮</button>
-      </form>
-    </div>
-  </div>
-</section>
-
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="f-title">VEDHAL · The Corpse Riddler</div>
   <p class="tag">“The tree always collects its debt.”</p>
+  <p class="statline">24 riddles · 3 tiers of descent · 23 voiced lines · 5 links to mortality · 0 servers</p>
   <p>An interactive horror experience — proximity-triggered animatronic corpse, voice-answered riddles,
      five links to mortality, candles that die in the dark, a laugh that follows, procedural tomb audio,
      cinematic captions &amp; letterboxing.</p>

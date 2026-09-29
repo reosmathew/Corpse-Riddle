@@ -12,28 +12,59 @@ const MAX_LIVES = 5;   // five links to mortality
 const WIN_TRUTHS = 5;  // survive five descents
 const TOTAL_TIME = 25000;
 
-/* ---------------- riddle bank ---------------- */
+/* ---------------- riddle bank — three tiers of difficulty ---------------- */
 const RIDDLES = [
-  { q: "The more of me you take, the larger I grow. I swallow coins, kings and bones alike, and never let them go. What am I?",
-    a: ["grave", "graves", "a grave", "hole"], chips: ["Grave", "Shadow", "River", "Memory"] },
-  { q: "I have a bed yet never sleep, a mouth yet never eat. I run all night and run all day, though I have no legs nor feet. What am I?",
+  /* — TIER I : the shallow grave — */
+  { tier: 1, q: "I have a bed yet never sleep, a mouth yet never eat. I run all night and run all day, though I have no legs nor feet. What am I?",
     a: ["river"], chips: ["Wind", "River", "Serpent", "Time"] },
-  { q: "The maker does not want me, the buyer does not use me, the user does not see me. What am I?",
-    a: ["coffin", "a coffin"], chips: ["Coffin", "Shroud", "Mirror", "Poison"] },
-  { q: "Alive without breath, cold as death; never hungry, never thirsty, clad in mail that never clinks. What am I?",
-    a: ["fish"], chips: ["Stone", "Ghost", "Fish", "Statue"] },
-  { q: "I follow you through noonday light and dance when the sun is high, but when the moon climbs up the sky, I die. What am I?",
+  { tier: 1, q: "I follow you through noonday light and dance when the sun is high, but when the moon climbs up the sky, I die. What am I?",
     a: ["shadow", "a shadow"], chips: ["Dream", "Shadow", "Footprint", "Echo"] },
-  { q: "I have cities, but no houses live; forests, but no trees; water, but no fish. What am I?",
-    a: ["map", "a map"], chips: ["Map", "Graveyard", "Desert", "Sky"] },
-  { q: "Feed me and I live; give me drink and I die. I dance on your grave if you let me climb. What am I?",
+  { tier: 1, q: "Feed me and I live; give me drink and I die. I dance on your grave if you let me climb. What am I?",
     a: ["fire", "flame"], chips: ["Fire", "Hunger", "Rust", "Weed"] },
-  { q: "I speak without a mouth and hear without ears. I have no body, but I come alive with wind and stone. What am I?",
-    a: ["echo", "an echo"], chips: ["Whisper", "Bell", "Echo", "Crow"] },
-  { q: "I fly all night without a wing, I cry all day without an eye. Wherever I pass, the light must die. What am I?",
-    a: ["cloud", "clouds", "a cloud"], chips: ["Bat", "Cloud", "Smoke", "Moon"] },
-  { q: "I have hands that cannot clap, a face that cannot smile, and I will count the very seconds until your body joins the pile. What am I?",
+  { tier: 1, q: "I have hands that cannot clap, a face that cannot smile, and I will count the very seconds until your body joins the pile. What am I?",
     a: ["clock", "a clock", "watch"], chips: ["Skeleton", "Clock", "Priest", "Drum"] },
+  { tier: 1, q: "I have many teeth but cannot eat, and I run through hair from dawn to night. What am I?",
+    a: ["comb", "a comb"], chips: ["Comb", "Saw", "Key", "Harrow"] },
+  { tier: 1, q: "The more I dry, the wetter I grow. I comfort the living and never complain. What am I?",
+    a: ["towel", "a towel"], chips: ["Rain", "Towel", "Sponge", "Tear"] },
+  { tier: 1, q: "When the rain comes down I go up, and when the sun returns I am banished. What am I?",
+    a: ["umbrella", "an umbrella"], chips: ["Umbrella", "Smoke", "Ladder", "Kite"] },
+  { tier: 1, q: "I have a neck but no head, I wear a cap but have no hair, and I keep what the dead once drank. What am I?",
+    a: ["bottle", "a bottle"], chips: ["Bottle", "Rope", "Well", "Axe"] },
+  /* — TIER II : the twisting root — */
+  { tier: 2, q: "The more of me you take, the larger I grow. I swallow coins, kings and bones alike, and never let them go. What am I?",
+    a: ["grave", "graves", "a grave", "hole"], chips: ["Grave", "Shadow", "River", "Memory"] },
+  { tier: 2, q: "The maker does not want me, the buyer does not use me, the user does not see me. What am I?",
+    a: ["coffin", "a coffin"], chips: ["Coffin", "Shroud", "Mirror", "Poison"] },
+  { tier: 2, q: "Alive without breath, cold as death; never hungry, never thirsty, clad in mail that never clinks. What am I?",
+    a: ["fish"], chips: ["Stone", "Ghost", "Fish", "Statue"] },
+  { tier: 2, q: "I have cities, but no houses live; forests, but no trees; water, but no fish. What am I?",
+    a: ["map", "a map"], chips: ["Map", "Graveyard", "Desert", "Sky"] },
+  { tier: 2, q: "I speak without a mouth and hear without ears. I have no body, but I come alive with wind and stone. What am I?",
+    a: ["echo", "an echo"], chips: ["Whisper", "Bell", "Echo", "Crow"] },
+  { tier: 2, q: "I fly all night without a wing, I cry all day without an eye. Wherever I pass, the light must die. What am I?",
+    a: ["cloud", "clouds", "a cloud"], chips: ["Bat", "Cloud", "Smoke", "Moon"] },
+  { tier: 2, q: "I have no doors, no windows, no floor and no roof, yet I guard a golden treasure no thief has ever taken. What am I?",
+    a: ["egg", "an egg"], chips: ["Egg", "Chest", "Seed", "Coin"] },
+  { tier: 2, q: "The more of me you shine your light upon, the less you see. What am I?",
+    a: ["darkness", "dark", "the dark"], chips: ["Darkness", "Fog", "Mirror", "Sleep"] },
+  { tier: 2, q: "I can be made, I can be played, I can be told, and I can be cracked — yet I have no body at all. What am I?",
+    a: ["joke", "a joke"], chips: ["Joke", "Bell", "Vow", "Bone"] },
+  { tier: 2, q: "I have a single eye but cannot see, and I drag my one long tail through every wound I make. What am I?",
+    a: ["needle", "a needle"], chips: ["Needle", "Storm", "Well", "Thread"] },
+  /* — TIER III : the hungry crown — */
+  { tier: 3, q: "I am the beginning of eternity, the end of time and space, the beginning of every end, and the end of every place. What am I?",
+    a: ["the letter e", "letter e", "e"], chips: ["The letter E", "The letter A", "The moon", "Zero"] },
+  { tier: 3, q: "You may hold me without ever touching me, yet the moment you name me, I break. What am I?",
+    a: ["silence"], chips: ["Silence", "Glass", "Promise", "Ice"] },
+  { tier: 3, q: "I weigh nothing at all, yet the strongest man alive cannot hold me for long. What am I?",
+    a: ["breath", "your breath"], chips: ["Breath", "Shadow", "Coin", "Regret"] },
+  { tier: 3, q: "I am wholly yours, yet the tree and every tongue will use me far more than you ever will. What am I?",
+    a: ["name", "your name", "my name"], chips: ["Your name", "Your shadow", "Your soul", "Your grave"] },
+  { tier: 3, q: "Feed me and I die; keep me buried and I live, growing heavier every year. What am I?",
+    a: ["secret", "a secret"], chips: ["A secret", "A flame", "A river", "A wound"] },
+  { tier: 3, q: "I am always before you, always promised, always coming — yet we shall never meet. What am I?",
+    a: ["tomorrow", "the future", "future"], chips: ["Tomorrow", "The wind", "Death", "A dream"] },
 ];
 const REWARDS = [
   { i: "🏺", n: "The Golden Idol of Kali", d: "It watches you sleep. It is grateful to be freed." },
@@ -44,7 +75,33 @@ const REWARDS = [
 ];
 /* Vedhal's venomous reactions — homages to Hollywood's great villains */
 const TAUNTS_CORRECT = ["taunt1", "taunt5", "taunt6", "taunt7", "taunt8", "taunt9"];
-const TAUNTS_WRONG = ["taunt3", "taunt4", "taunt10"];
+const TAUNTS_WRONG = ["wrong1", "wrong2", "wrong3", "wrong4", "wrong5", "taunt3", "taunt4", "taunt10"];
+/* on-screen sarcasm for failures */
+const SARCASMS = [
+  "The worms applauded. In pity.",
+  "A crown of failures, tailor-made for you.",
+  "Delicious certainty. Zero substance.",
+  "New ways to disappoint — collected, archived, admired.",
+  "Even the moths answered faster.",
+  "The tree sends its thanks for the meal.",
+];
+/* no-repeat draw bags */
+function makeBag(arr) { const b = shuffle([...arr]); return () => (b.length ? b.pop() : null); }
+let bagCorrect = null, bagWrong = null;
+function drawFrom(get, set, all) {
+  let bag = get(); let v = bag ? bag() : null;
+  if (!v) { bag = makeBag(all); set(bag); v = bag(); }
+  return v;
+}
+const usedRiddles = new Set();
+const tierFor = (descent) => (descent <= 2 ? 1 : descent <= 4 ? 2 : 3);
+function pickRiddle(tier) {
+  let pool = RIDDLES.map((r, i) => ({ r, i })).filter((x) => x.r.tier === tier && !usedRiddles.has(x.i));
+  if (!pool.length) pool = RIDDLES.map((r, i) => ({ r, i })).filter((x) => x.r.tier === tier);
+  const x = pick(pool);
+  usedRiddles.add(x.i);
+  return x.r;
+}
 /* cinematic captions — what the corpse says, shown as subtitles */
 const VOICE_LINES = {
   "audio/awakening.mp3": "Who creeps among my roots? I smell living thought... Come closer, little clay creature. The tree has waited a thousand years to taste you.",
@@ -81,11 +138,12 @@ const compartment = $("#compartment");
 const heartEl = $("#heart"), sanityFill = $("#sanityFill");
 const descentNum = $("#descentNum"), lifelinesEl = $("#lifelines");
 const finale = $("#finale");
+const legendImg = document.querySelector(".legend-img img");
 
 /* ---------------- game state ---------------- */
 const G = {
-  entered: false, awoken: false, phase: "idle", // idle|waking|riddle|result|scare|done
-  right: 0, wrong: 0, lives: MAX_LIVES, queue: [], tauntC: 0, tauntW: 0,
+  entered: false, awoken: false, phase: "idle", // idle|waking|riddle|result|dark|done
+  right: 0, wrong: 0, lives: MAX_LIVES,
   deadline: 0, lastSec: -1, bpm: 64, nextBeat: 0,
   prox: 0, proxHold: 0, sanity: 100, t0: 0, current: null,
 };
@@ -95,6 +153,7 @@ const G = {
    ============================================================ */
 let ctx = null, master = null, comp = null, conv = null, voiceTap = null;
 let noiseBuf = null; const bufCache = new Map();
+let voiceLive = null; // one voice at a time — new lines duck the old
 const td = new Uint8Array(512);
 
 function ensureAudio() {
@@ -157,8 +216,19 @@ async function playClip(url, { rate = 1.08, gain = 1, wet = 0.7, tremor = 26, hi
     g.connect(master); g.connect(voiceTap);
     const w = ctx.createGain(); w.gain.value = wet; g.connect(w); w.connect(conv);
     const dur = buf.duration / rate + 0.4;
+    // voice bus: duck whatever the corpse was saying before
+    if (voiceLive) {
+      const old = voiceLive; voiceLive = null;
+      try { old.g.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.06); } catch (e) {}
+      setTimeout(() => { try { old.src.stop(); old.tOsc.stop(); if (old.h) old.h.stop(); } catch (e) {} }, 260);
+    }
+    const live = { src, tOsc, h, g };
+    voiceLive = live;
     return new Promise((res) => {
-      src.onended = () => { try { if (h) h.stop(); } catch (e) {} tOsc.stop(); res(); };
+      src.onended = () => {
+        if (voiceLive === live) voiceLive = null;
+        try { if (h) h.stop(); } catch (e) {} try { tOsc.stop(); } catch (e) {} res();
+      };
       src.start(); tOsc.start(); if (h) { h.start(); h.stop(ctx.currentTime + dur); }
       src.stop(ctx.currentTime + dur + 0.1);
     });
@@ -331,7 +401,7 @@ function drawHead(t, dt) {
 /* ============================================================
    PROXIMITY SENSOR + CURSOR
    ============================================================ */
-const dot = $("#cursorDot"), glowc = $("#cursorGlow");
+const glowc = $("#cursorGlow");
 let mx = innerWidth / 2, my = innerHeight / 2, gx = mx, gy = my;
 addEventListener("mousemove", (e) => {
   mx = e.clientX; my = e.clientY;
@@ -372,9 +442,10 @@ function awaken() {
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 function startRound() {
-  if (!G.queue.length) G.queue = shuffle(RIDDLES.map((_, i) => i));
-  const r = RIDDLES[G.queue.pop()];
+  const r = pickRiddle(tierFor(G.right + 1)); // difficulty climbs as you descend; never repeats
   G.current = r; G.phase = "riddle";
+  document.body.classList.add("descend");
+  setTimeout(() => document.body.classList.remove("descend"), 450);
   panel.classList.remove("hidden");
   verdict.textContent = ""; verdict.className = "";
   transcript.textContent = "";
@@ -442,7 +513,7 @@ function correct() {
   G.phase = "result"; G.right++;
   document.body.classList.remove("danger");
   sfxWhoosh(); sfxChime();
-  playClip(`audio/${TAUNTS_CORRECT[G.tauntC++ % TAUNTS_CORRECT.length]}.mp3`, { rate: 1.08 });
+  playClip(`audio/${drawFrom(() => bagCorrect, (b) => (bagCorrect = b), TAUNTS_CORRECT)}.mp3`, { rate: 1.08 });
   setTimeout(() => sfxCreak(), 500);
   const rw = pick(REWARDS);
   $("#rewardIcon").textContent = rw.i;
@@ -465,13 +536,14 @@ function fail(reason) {
   sfxCrack();   // the link snaps
   sfxSnuff();   // the flame dies
   document.body.classList.add("lights-out");
-  playClip("audio/laugh.mp3", { rate: 1.12, wet: 0.95 }); // the sneaky laugh in the dark
+  // the sneaky laugh first; the sarcasm follows once the laugh is done — never overlapping
+  playClip("audio/laugh.mp3", { rate: 1.12, wet: 0.95 })
+    .then(() => playClip(`audio/${drawFrom(() => bagWrong, (b) => (bagWrong = b), TAUNTS_WRONG)}.mp3`, { rate: 1.08, gain: 0.95 }));
   setTimeout(() => {
     document.body.classList.remove("lights-out");
-    playClip(`audio/${TAUNTS_WRONG[G.tauntW++ % TAUNTS_WRONG.length]}.mp3`, { rate: 1.08, gain: 0.95 });
     verdict.textContent = G.lives <= 0
       ? "THE LAST LINK SNAPS. YOUR MEMORY BELONGS TO THE TREE."
-      : (reason === "timeout" ? "SILENCE. THE TREE LEANS CLOSER." : "WRONG. A FRACTURE OF YOUR SOUL, TORN AWAY.");
+      : (reason === "timeout" ? "SILENCE. " + pick(SARCASMS) : "WRONG. " + pick(SARCASMS));
     verdict.className = "bad";
     G.phase = "result";
     nextBtn.textContent = G.lives <= 0 ? "Face the Tree" : "Descend Again";
@@ -500,7 +572,8 @@ function doFinale(win) {
 }
 $("#againBtn").addEventListener("click", () => {
   finale.classList.remove("show");
-  Object.assign(G, { awoken: false, phase: "idle", right: 0, wrong: 0, lives: MAX_LIVES, queue: [], sanity: 100, t0: performance.now() });
+  Object.assign(G, { awoken: false, phase: "idle", right: 0, wrong: 0, lives: MAX_LIVES, sanity: 100, t0: performance.now() });
+  usedRiddles.clear(); bagCorrect = null; bagWrong = null;
   [...lifelinesEl.children].forEach((i) => i.classList.remove("lost"));
   descentNum.textContent = "DESCENT I / V";
   compartment.classList.remove("open");
@@ -529,11 +602,15 @@ micBtn.addEventListener("click", () => {
   try { rec.start(); micOn = true; micBtn.classList.add("live"); micBtn.textContent = " Listening…"; } catch (e) {}
 });
 
-/* ---------------- ambient whispers on the hero ---------------- */
+/* ---------------- ambient whispers on the hero (never over dialogue) ---------------- */
+let lastWhisper = 0;
 setInterval(() => {
-  if (!G.entered || G.phase === "done" || !ctx) return;
-  if (Math.random() < 0.3 && scrollY < innerHeight * 0.8)
-    playClip(pick(["audio/whisper1.mp3", "audio/whisper2.mp3"]), { rate: 1.25, gain: 0.35, wet: 1, hiss: 0.02 });
+  if (!G.entered || !ctx || voiceLive) return;
+  if (G.phase === "riddle" || G.phase === "dark" || G.phase === "waking" || G.phase === "done") return;
+  if (Math.random() < 0.3 && scrollY < innerHeight * 0.8) {
+    lastWhisper = 1 - lastWhisper; // alternate, never the same twice running
+    playClip(lastWhisper ? "audio/whisper2.mp3" : "audio/whisper1.mp3", { rate: 1.25, gain: 0.35, wet: 1, hiss: 0.02 });
+  }
 }, 14000);
 
 /* ============================================================
@@ -547,8 +624,14 @@ function loop(t) {
   drawHead(t, dt);
 
   gx += (mx - gx) * 0.16; gy += (my - gy) * 0.16;
-  dot.style.left = mx + "px"; dot.style.top = my + "px";
   glowc.style.left = gx + "px"; glowc.style.top = gy + "px";
+
+  // parallax on the exhumed relic
+  if (legendImg) {
+    const r = legendImg.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < innerHeight)
+      legendImg.style.transform = `translateY(${(r.top + r.height / 2 - innerHeight / 2) * -0.07}px)`;
+  }
 
   if (G.entered && !G.awoken) {
     if (G.prox > 0.72) {
@@ -621,58 +704,5 @@ requestAnimationFrame(loop);
   });
 })();
 
-/* ============================================================
-   COMMUNE WITH THE VEDHAL — the crypt chatbox
-   ============================================================ */
-const chatLog = $("#chatLog"), chatForm = $("#chatForm"), chatInput = $("#chatInput"),
-  chatStatus = $("#chatStatus");
-const CHAT_RULES = [
-  { re: /who|what are you|name/i, t: "I am the Vedhal — the hunger that wears a corpse. A cosmic anomaly, little clay. You are the toy.", c: "audio/awakening.mp3" },
-  { re: /tree/i, t: "The tree always collects its debt. It is already rooting through your memories. Hehe.", c: "audio/taunt3.mp3" },
-  { re: /fear|scared|afraid|dark/i, t: "There is no right or wrong in this chamber — there is only my hunger, and those too weak to escape it.", c: "audio/taunt4.mp3" },
-  { re: /laugh|joke|funny|mirth/i, t: "You want mirth from a mouth full of grave dirt? Hehe... very well. You are the joke.", c: "audio/laugh.mp3" },
-  { re: /spare|mercy|free|release|let me/i, t: "Mercy? My vault, my riddles, my hunger! You are an insignificant insect buzzing inside my web.", c: "audio/taunt10.mp3" },
-  { re: /hello|^hi|hey|namaste/i, t: "I can smell your thoughts... they smell of greetings. How mortal of you.", c: "audio/whisper2.mp3" },
-  { re: /hint|help|stuck|answer/i, t: "", c: null, hint: true },
-];
-const CHAT_FALLBACK = [VOICE_LINES["audio/taunt1.mp3"], VOICE_LINES["audio/taunt5.mp3"], VOICE_LINES["audio/taunt7.mp3"], VOICE_LINES["audio/taunt9.mp3"], VOICE_LINES["audio/taunt2.mp3"]];
-let chatFall = 0;
-function pushMsg(who, text) {
-  const m = document.createElement("div");
-  m.className = "msg " + who;
-  m.textContent = text;
-  chatLog.appendChild(m);
-  chatLog.scrollTop = chatLog.scrollHeight;
-  return m;
-}
-function sendChat(text) {
-  const q = text.trim();
-  if (!q) return;
-  pushMsg("user", q);
-  chatStatus.textContent = "the corpse is thinking…";
-  setTimeout(() => {
-    let r = null;
-    for (const rule of CHAT_RULES) if (rule.re.test(q)) { r = rule; break; }
-    if (r && r.hint) {
-      const n = G.current ? norm(G.current.a[0]).length : 0;
-      pushMsg("vedhal", n ? `A hint, little mind? The truth of your current riddle has ${n} letters... and not one of them will save you. Hehe.` : "No riddle hangs between us now. Ask, or begone.");
-    } else if (r) {
-      pushMsg("vedhal", r.t);
-      if (r.c) playClip(r.c, { rate: 1.08 });
-    } else {
-      pushMsg("vedhal", CHAT_FALLBACK[chatFall++ % CHAT_FALLBACK.length]);
-      playClip("audio/whisper1.mp3", { rate: 1.2, gain: 0.5, wet: 1 });
-    }
-    chatStatus.textContent = "lurking…";
-  }, 900 + Math.random() * 700);
-}
-chatForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  sendChat(chatInput.value);
-  chatInput.value = "";
-});
-document.querySelectorAll(".chat-prompts button").forEach((b) =>
-  b.addEventListener("click", () => sendChat(b.dataset.q)));
-
 /* debug / test hook */
-window.__BETAAL = { get state() { return G; }, submit, startRound, awaken, sendChat };
+window.__BETAAL = { get state() { return G; }, submit, startRound, awaken };

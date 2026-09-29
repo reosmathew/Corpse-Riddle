@@ -58,6 +58,7 @@ npm i          # installs jsdom (dev-only)
 node test/smoke.js
 ```
 
-40 assertions cover: gate & silent entry, proximity awakening, captions, riddle flow,
-correct → irritated taunt + open vault, wrong → candles-out + laugh + fracture HUD,
-both finales, the commune chatbox, and fuzzy voice matching.
+40+ assertions cover: gate & silent entry, proximity awakening, captions, riddle flow with
+difficulty tiers and no-repeat riddles/dialogue, correct → irritated taunt + open vault,
+wrong → candles-out + sneaky laugh + sarcastic verdict + fracture HUD, both finales,
+and fuzzy voice matching.
