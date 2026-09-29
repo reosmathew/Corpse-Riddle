@@ -8,8 +8,8 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const rand = (a, b) => a + Math.random() * (b - a);
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-const MAX_LIVES = 5;   // five links to mortality
-const WIN_TRUTHS = 5;  // survive five descents
+const MAX_LIVES = 3;   // three links to mortality — three wrongs and you are dead
+const WIN_TRUTHS = 7;  // more than six truths: the ghost is slain, the world is saved
 const TOTAL_TIME = 25000;
 
 /* ---------------- riddle bank — three tiers of difficulty ---------------- */
@@ -94,7 +94,7 @@ function drawFrom(get, set, all) {
   return v;
 }
 const usedRiddles = new Set();
-const tierFor = (descent) => (descent <= 2 ? 1 : descent <= 4 ? 2 : 3);
+const tierFor = (descent) => (descent <= 2 ? 1 : descent <= 5 ? 2 : 3);
 function pickRiddle(tier) {
   let pool = RIDDLES.map((r, i) => ({ r, i })).filter((x) => x.r.tier === tier && !usedRiddles.has(x.i));
   if (!pool.length) pool = RIDDLES.map((r, i) => ({ r, i })).filter((x) => x.r.tier === tier);
@@ -110,8 +110,8 @@ const VOICE_LINES = {
   "audio/timeout.mp3": "Silence! The candle dies... and the tree leans closer to collect.",
   "audio/whisper1.mp3": "Come closer...",
   "audio/whisper2.mp3": "I can smell your thoughts.",
-  "audio/finale-win.mp3": "Five truths in the dark. You slip the noose, little clay... Return when the moon is black.",
-  "audio/finale-loss.mp3": "Five fractures. Five sweet bites of soul. Your memory belongs to the tree now.",
+  "audio/finale-win.mp3": "Seven truths... seven burns! You have unmade me, little clay. The tree withers — and the world you saved will never know your name.",
+  "audio/finale-loss.mp3": "Three fractures. Three sweet bites of soul. You are dead, little clay, and your memory belongs to the tree.",
   "audio/taunt1.mp3": "Conceited dust! Do not think a single spark of logic can pierce my shadow!",
   "audio/taunt2.mp3": "It is the smell of your petty mortal satisfaction that I find... disappointing.",
   "audio/taunt3.mp3": "Do you fear the void, flesh-bag? The tree always collects its debt!",
@@ -452,7 +452,7 @@ function startRound() {
   nextBtn.classList.add("hidden");
   compartment.classList.remove("open");
   answerInput.value = "";
-  descentNum.textContent = `DESCENT ${["I", "II", "III", "IV", "V"][Math.min(G.right, 4)]} / V`;
+  descentNum.textContent = `DESCENT ${["I", "II", "III", "IV", "V", "VI", "VII"][Math.min(G.right, 6)]} / VII`;
   typewrite(r.q);
   chipsEl.innerHTML = "";
   shuffle([...r.chips]).forEach((c) => {
@@ -522,7 +522,7 @@ function correct() {
   compartment.classList.add("open");
   verdict.textContent = "THE TRUTH IS ACCEPTED — AND RESENTED.";
   verdict.className = "good";
-  nextBtn.textContent = G.right >= WIN_TRUTHS ? "Claim Your Freedom" : "Descend Again";
+  nextBtn.textContent = G.right >= WIN_TRUTHS ? "⚔ Slay the Vedhal" : "Descend Again";
   nextBtn.classList.remove("hidden");
 }
 
@@ -542,7 +542,7 @@ function fail(reason) {
   setTimeout(() => {
     document.body.classList.remove("lights-out");
     verdict.textContent = G.lives <= 0
-      ? "THE LAST LINK SNAPS. YOUR MEMORY BELONGS TO THE TREE."
+      ? "THE LAST LINK SNAPS. YOU ARE DEAD."
       : (reason === "timeout" ? "SILENCE. " + pick(SARCASMS) : "WRONG. " + pick(SARCASMS));
     verdict.className = "bad";
     G.phase = "result";
@@ -559,10 +559,10 @@ nextBtn.addEventListener("click", () => {
 
 function doFinale(win) {
   G.phase = "done";
-  $("#finaleTitle").textContent = win ? "YOU SLIP THE NOOSE" : "YOUR MEMORY BELONGS TO THE TREE";
+  $("#finaleTitle").textContent = win ? "THE GHOST IS SLAIN" : "YOU ARE DEAD";
   $("#finaleSub").textContent = win
-    ? "The Vedhal hisses your name into the dark — and the tree, for once, goes hungry."
-    : "Five fractures. Five bites of soul. The Vedhal will wear your thoughts like a crown of flies.";
+    ? "Seven truths burned like dawnlight. The Vedhal crumbles to ash, the hungry tree withers — and the world you saved will never know your name."
+    : "Three fractures. Three bites of soul. Your memory belongs to the tree, and the Vedhal feeds for another thousand years.";
   $("#statRight").textContent = G.right;
   $("#statWrong").textContent = G.wrong;
   $("#statTime").textContent = Math.round((performance.now() - G.t0) / 1000) + "s";

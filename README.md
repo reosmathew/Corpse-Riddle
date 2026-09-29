@@ -2,7 +2,7 @@
 
 An interactive cinematic horror ritual. A corpse hangs in a tomb between two worlds; approach it
 and the **Vedhal** wakes — a cosmic anomaly, a primordial consumer of human consciousness.
-He grants you **five links to your mortality**. Answer his riddles aloud, or your memory
+He grants you **three links to your mortality**. Answer his riddles aloud, or your memory
 belongs to the tree.
 
 ## Run
@@ -27,8 +27,8 @@ npm i && node test/smoke.js   # headless jsdom run of the full state machine (34
   Never repeated, win or lose.
 - **Voice answers** — Web Speech API, typed input, or whispered option chips; fuzzy matching
   tolerates articles, punctuation and recognition typos.
-- **Five links to mortality** — wrong/silence rips a link (crack SFX, HUD fracture).
-  0 links → *YOUR MEMORY BELONGS TO THE TREE*. 5 truths → *YOU SLIP THE NOOSE*.
+- **Three links to mortality** — wrong/silence rips a link (crack SFX, HUD fracture).
+  0 links → *YOU ARE DEAD*. 7 truths → *THE GHOST IS SLAIN* — the world saved.
 - **Correct** — the entity is irritated to its core: non-repeating Hollywood-villain venom
   (Sauron, Smith, Davy Jones, Voldemort, Thanos, Cthulhu, Hannibal, the epics, Commodus,
   Harkonnen), then the vault grinds open over a glowing relic.

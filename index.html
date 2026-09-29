@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VEDHAL — The Corpse Riddler</title>
-<meta name="description" content="An interactive horror ritual. The Vedhal hangs in the dark and speaks in paradoxes. Five links bind you to mortality — answer aloud, or belong to the tree.">
+<meta name="description" content="An interactive horror ritual. The Vedhal hangs in the dark and speaks in paradoxes. Three links bind you to mortality. Seven truths slay the ghost — answer aloud, or belong to the tree.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
 <meta name="theme-color" content="#040504">
 <meta property="og:title" content="VEDHAL — The Corpse Riddler">
-<meta property="og:description" content="An interactive horror ritual. Five links to mortality. Answer aloud, or belong to the tree.">
+<meta property="og:description" content="An interactive horror ritual. Three links to mortality, seven truths to slay the ghost. Answer aloud, or belong to the tree.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +43,7 @@
       <li>🎧 &nbsp;Wear headphones. The dead whisper in stereo.</li>
       <li>🕯️ &nbsp;When you fail, every candle goes out — and something laughs in the dark.</li>
       <li>🎙️ &nbsp;Enable your microphone to speak your answers into the abyss.</li>
-      <li>⛓️ &nbsp;You are granted five links to your mortality. Spend them, and your memory belongs to the tree.</li>
+      <li>⛓️ &nbsp;You are granted three links to your mortality. Three wrongs, and you are dead.</li>
     </ul>
     <button id="enterBtn" class="blood-btn magnetic" type="button">Enter the Tomb</button>
     <div><button id="silentBtn" class="ghost-btn" type="button">🔇 enter in silence</button></div>
@@ -64,13 +64,14 @@
       <span class="row2">Riddler</span>
     </h1>
     <p class="hero-sub">It hangs in the dark. It speaks in paradoxes.
-      Five links bind you to mortality — speak your answers aloud, or belong to the tree.</p>
+      Three links bind you to mortality — speak seven truths and slay the ghost,
+      or belong to the tree.</p>
   </div>
   <div class="scroll-cue">Descend ⌄</div>
 </header>
 
 <div class="marquee"><div class="marquee-track" id="marqueeTrack">
-  <span>Speak <b>✦</b> Answer <b>✦</b> Survive <b>✦</b> The tree always collects its debt <b>✦</b> Five links to mortality <b>✦</b>&nbsp;</span>
+  <span>Speak <b>✦</b> Answer <b>✦</b> Survive <b>✦</b> The tree always collects its debt <b>✦</b> Three links to mortality <b>✦</b> Seven truths to slay the ghost <b>✦</b>&nbsp;</span>
 </div></div>
 
 <!-- ================= LEGEND ================= -->
@@ -88,10 +89,11 @@
         he asks.</p>
       <blockquote>“There is no right or wrong in this chamber — there is only my hunger, and those
         too weak to escape it.”</blockquote>
-      <p>He grants you exactly five links to your mortality. Every false answer rips away a
-        fracture of your soul and feeds his ancient hunger. Answer truly, and you will find no
-        gracious host — only an entity irritated to its core, spitting venom before the next
-        descent. Speak clearly into the abyss. If you fall silent, your memory belongs to the tree.</p>
+      <p>He grants you exactly three links to your mortality. Every false answer rips one away
+        and feeds his ancient hunger — three wrongs and you are dead, your memory belonging to
+        the tree. But speak more than six truths, and the unthinkable happens: the ghost is slain,
+        the tree withers, and the world is saved by a fool with a candle. Speak clearly into the
+        abyss. If you fall silent, the tree leans closer.</p>
     </div>
     <figure class="legend-img reveal">
       <img src="assets/corpse-face.png" alt="The desiccated face of the Vedhal, eyes like empty sockets">
@@ -116,18 +118,19 @@
       <div class="card reveal">
         <div class="icon">⛓️</div>
         <div class="num">Law II</div>
-        <h3>Five Links to Mortality</h3>
-        <p>Five links bind your soul to the living world. Every wrong answer — every silence —
-          rips one away, feeding his ancient hunger. Lose all five, and your memory belongs
-          to the tree. One candle burns per riddle; when the wax dies, so does a link.</p>
+        <h3>Three Links to Mortality</h3>
+        <p>Three links bind your soul to the living world. Every wrong answer — every silence —
+          rips one away, feeding his ancient hunger; when a link snaps, every candle dies and
+          his sneaky laugh circles you in the dark. Lose all three and you are dead.
+          One candle burns per riddle; when the wax dies, so does a link.</p>
       </div>
       <div class="card reveal">
-        <div class="icon">💀</div>
+        <div class="icon">⚔️</div>
         <div class="num">Law III</div>
-        <h3>Failure Has a Sound</h3>
-        <p>A snapped link kills the light: every candle gutters out, the tomb goes black,
-          and his sneaky laugh circles your head — before venomous commentary aimed
-          squarely at your confidence. Survive it, and descend again.</p>
+        <h3>Slay the Ghost</h3>
+        <p>Speak more than six truths and the Vedhal is unmade: the ghost slain, the hungry
+          tree withered, the world saved. Fail, and his sneaky laugh is the last thing
+          your candle ever sees.</p>
       </div>
     </div>
   </div>
@@ -142,8 +145,8 @@
       <div class="sanitybar"><i id="sanityFill"></i></div>
     </div>
     <div class="hud-block" style="text-align:right">
-      <span id="descentNum">DESCENT I / V</span>
-      <div class="lifelines" id="lifelines" title="five links to mortality"><i></i><i></i><i></i><i></i><i></i></div>
+      <span id="descentNum">DESCENT I / VII</span>
+      <div class="lifelines" id="lifelines" title="three links to mortality"><i></i><i></i><i></i></div>
     </div>
   </div>
 
@@ -186,9 +189,9 @@
 <footer>
   <div class="f-title">VEDHAL · The Corpse Riddler</div>
   <p class="tag">“The tree always collects its debt.”</p>
-  <p class="statline">24 riddles · 3 tiers of descent · 23 voiced lines · 5 links to mortality · 0 servers</p>
+  <p class="statline">24 riddles · 3 tiers of descent · 23 voiced lines · 3 links to mortality · 7 truths to win · 0 servers</p>
   <p>An interactive horror experience — proximity-triggered animatronic corpse, voice-answered riddles,
-     five links to mortality, candles that die in the dark, a laugh that follows, procedural tomb audio,
+     three links to mortality, candles that die in the dark, a laugh that follows, procedural tomb audio,
      cinematic captions &amp; letterboxing.</p>
   <p>The Vedhal's venom borrows thunder from Hollywood's great villains — Sauron, Agent Smith,
      Davy Jones, Voldemort, Thanos, the Cthulhu mythos, Hannibal Lecter, Commodus, Baron Harkonnen
@@ -199,7 +202,7 @@
 <div id="finale">
   <div class="fin-inner">
     <p class="kicker">The Ritual is Complete</p>
-    <h2 id="finaleTitle">YOU SLIP THE NOOSE</h2>
+    <h2 id="finaleTitle">THE GHOST IS SLAIN</h2>
     <p class="gate-note" id="finaleSub"></p>
     <div class="fin-stats">
       <div><b id="statRight">0</b><span>truths spoken</span></div>
