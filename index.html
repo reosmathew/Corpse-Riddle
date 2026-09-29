@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEDHAL — The Corpse Riddler</title>
+<meta name="description" content="An interactive horror ritual. The Vedhal hangs in the dark and speaks in paradoxes. Five links bind you to mortality — answer aloud, or belong to the tree.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
+<meta name="theme-color" content="#040504">
+<meta property="og:title" content="VEDHAL — The Corpse Riddler">
+<meta property="og:description" content="An interactive horror ritual. Five links to mortality. Answer aloud, or belong to the tree.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="grain"></div>
+<div id="vignette"></div>
+<div id="blackout"></div>
+<div id="captions" aria-live="polite"></div>
+<div id="cursorGlow"></div>
+<div id="cursorDot"></div>
+<div class="letterbox top"></div>
+<div class="letterbox bottom"></div>
+
+<!-- ================= THE GATE ================= -->
+<div id="gate">
+  <div class="gate-inner">
+    <svg class="candle-svg" viewBox="0 0 60 100" aria-hidden="true">
+      <defs><radialGradient id="fg" cx="50%" cy="70%" r="60%">
+        <stop offset="0%" stop-color="#ffd97a"/><stop offset="55%" stop-color="#ff8c1a"/><stop offset="100%" stop-color="#ff8c1a" stop-opacity="0"/>
+      </radialGradient></defs>
+      <ellipse cx="30" cy="30" rx="12" ry="20" fill="url(#fg)"/>
+      <rect x="28" y="38" width="4" height="10" fill="#333"/>
+      <rect x="20" y="46" width="20" height="48" rx="3" fill="#d9cfbc"/>
+      <path d="M20 52 q4 8 0 14 M40 50 q-4 10 0 18" stroke="#b8ad93" stroke-width="3" fill="none"/>
+    </svg>
+    <h1 class="gate-title">VEDHAL</h1>
+    <p class="gate-sub">THE CORPSE RIDDLER · KEEPER OF THE HUNGRY TREE</p>
+    <ul class="gate-warnings">
+      <li>🎧 &nbsp;Wear headphones. The dead whisper in stereo.</li>
+      <li>🕯️ &nbsp;When you fail, every candle goes out — and something laughs in the dark.</li>
+      <li>🎙️ &nbsp;Enable your microphone to speak your answers into the abyss.</li>
+      <li>⛓️ &nbsp;You are granted five links to your mortality. Spend them, and your memory belongs to the tree.</li>
+    </ul>
+    <button id="enterBtn" class="blood-btn magnetic" type="button">Enter the Tomb</button>
+    <div><button id="silentBtn" class="ghost-btn" type="button">🔇 enter in silence</button></div>
+    <p class="gate-note">By entering, you offer your voice to the dark.</p>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<header id="hero">
+  <div class="bg"></div>
+  <div class="fog f1"></div>
+  <div class="fog f2"></div>
+  <div id="dust"></div>
+  <div class="inner">
+    <p class="kicker">An Interactive Horror Ritual</p>
+    <h1 class="hero-title">
+      <span class="row1">The Corpse</span>
+      <span class="row2">Riddler</span>
+    </h1>
+    <p class="hero-sub">It hangs in the dark. It speaks in paradoxes.
+      Five links bind you to mortality — speak your answers aloud, or belong to the tree.</p>
+  </div>
+  <div class="scroll-cue">Descend ⌄</div>
+</header>
+
+<div class="marquee"><div class="marquee-track" id="marqueeTrack">
+  <span>Speak <b>✦</b> Answer <b>✦</b> Survive <b>✦</b> The tree always collects its debt <b>✦</b> Five links to mortality <b>✦</b>&nbsp;</span>
+</div></div>
+
+<!-- ================= LEGEND ================= -->
+<section id="legend">
+  <div class="wrap two-col">
+    <div class="legend-text reveal">
+      <p class="kicker">The Legend</p>
+      <h2 class="big">The Hunger That Wears a Corpse</h2>
+      <p class="lead">The Vedhal is no mere ghost — he is a cosmic anomaly, a primordial consumer
+        of human consciousness who views the mind of man as a fragile toy. His body hangs in a tomb
+        between two worlds, chained above the roots of the hungry tree, and he does not kill
+        quickly. He targets your sanity.</p>
+      <p>He feels a twisted amusement watching the sharpest minds of men and women twist, splinter
+        and turn to ash under the torment of his paradoxes. Approach, and he wakes. Wake him, and
+        he asks.</p>
+      <blockquote>“There is no right or wrong in this chamber — there is only my hunger, and those
+        too weak to escape it.”</blockquote>
+      <p>He grants you exactly five links to your mortality. Every false answer rips away a
+        fracture of your soul and feeds his ancient hunger. Answer truly, and you will find no
+        gracious host — only an entity irritated to its core, spitting venom before the next
+        descent. Speak clearly into the abyss. If you fall silent, your memory belongs to the tree.</p>
+    </div>
+    <figure class="legend-img reveal">
+      <img src="assets/corpse-face.png" alt="The desiccated face of the Vedhal, eyes like empty sockets">
+      <figcaption>Relic № IX — the Vedhal, exhumed</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= RITUAL ================= -->
+<section id="ritual">
+  <div class="wrap">
+    <p class="kicker reveal">The Ritual</p>
+    <h2 class="big reveal">Three Laws of the Tomb</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="icon">🎙️</div>
+        <div class="num">Law I</div>
+        <h3>Speak to the Dead</h3>
+        <p>The corpse poses its riddle in a rasping whisper. Answer <em>aloud</em> into the hidden
+          microphone — or type, if your courage fails. Whispers of false choices are also offered.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">⛓️</div>
+        <div class="num">Law II</div>
+        <h3>Five Links to Mortality</h3>
+        <p>Five links bind your soul to the living world. Every wrong answer — every silence —
+          rips one away, feeding his ancient hunger. Lose all five, and your memory belongs
+          to the tree. One candle burns per riddle; when the wax dies, so does a link.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">💀</div>
+        <div class="num">Law III</div>
+        <h3>Failure Has a Sound</h3>
+        <p>A snapped link kills the light: every candle gutters out, the tomb goes black,
+          and his sneaky laugh circles your head — before venomous commentary aimed
+          squarely at your confidence. Survive it, and descend again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHAMBER ================= -->
+<section id="chamber">
+  <div class="chamber-bg" aria-hidden="true"></div>
+  <div class="hud">
+    <div class="hud-block">
+      <span class="heart" id="heart">♥</span> Pulse
+      <div class="sanitybar"><i id="sanityFill"></i></div>
+    </div>
+    <div class="hud-block" style="text-align:right">
+      <span id="descentNum">DESCENT I / V</span>
+      <div class="lifelines" id="lifelines" title="five links to mortality"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="hang">
+      <div class="chains"><i></i><i></i></div>
+      <div class="headwrap"><canvas id="headCanvas" width="640" height="360"></canvas></div>
+    </div>
+    <p id="approachHint">…approach the corpse — bring your light close, or lay a hand upon it…</p>
+
+    <div class="compartment" id="compartment">
+      <div class="reward" id="reward">
+        <div class="r-icon" id="rewardIcon">🏺</div>
+        <h4 id="rewardName">—</h4>
+        <p id="rewardDesc">—</p>
+      </div>
+      <div class="slab">Sealed · Speak the Truth</div>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="panel">
+    <p id="riddleText"></p>
+    <div class="candle-row">
+      <div class="candle"><div class="wax" id="wax"></div><div class="flame"></div></div>
+      <span id="timeNum">25</span>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="answer-row">
+      <input id="answerInput" type="text" autocomplete="off" placeholder="whisper your answer here…">
+      <button class="icon-btn" id="micBtn" type="button" aria-label="speak your answer">🎙 Speak</button>
+      <button class="icon-btn" id="submitBtn" type="button" aria-label="offer your answer">Offer</button>
+    </div>
+    <p id="transcript"></p>
+    <p id="verdict"></p>
+    <button class="blood-btn hidden" id="nextBtn" type="button">Descend Again</button>
+  </div>
+</section>
+
+<!-- ================= COMMUNE (chatbox) ================= -->
+<section id="commune">
+  <div class="wrap chat-wrap reveal">
+    <p class="kicker">A Chatbox From The Crypt</p>
+    <h2 class="big">Commune With the Vedhal</h2>
+    <p class="chat-note">He answers every fool who types. Choose a whisper, or write your own —
+      he will answer in voice, and his jaw will move with it.</p>
+    <div class="chat-slate">
+      <div class="chat-head">💀 THE VEDHAL <span class="chat-status" id="chatStatus">lurking…</span></div>
+      <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
+      <div class="chat-prompts">
+        <button type="button" data-q="Who are you?">👁 Who are you?</button>
+        <button type="button" data-q="Tell me of the tree">🌳 Tell me of the tree</button>
+        <button type="button" data-q="Spare me!">🙏 Spare me</button>
+        <button type="button" data-q="Make me laugh">😂 Make me laugh</button>
+        <button type="button" data-q="A hint, please">🕯 A hint</button>
+      </div>
+      <form id="chatForm" class="chat-form">
+        <input id="chatInput" type="text" autocomplete="off" placeholder="type to the dead…" aria-label="message to the Vedhal">
+        <button class="icon-btn" type="submit">Summon 🔮</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="f-title">VEDHAL · The Corpse Riddler</div>
+  <p class="tag">“The tree always collects its debt.”</p>
+  <p>An interactive horror experience — proximity-triggered animatronic corpse, voice-answered riddles,
+     five links to mortality, candles that die in the dark, a laugh that follows, procedural tomb audio,
+     cinematic captions &amp; letterboxing.</p>
+  <p>The Vedhal's venom borrows thunder from Hollywood's great villains — Sauron, Agent Smith,
+     Davy Jones, Voldemort, Thanos, the Cthulhu mythos, Hannibal Lecter, Commodus, Baron Harkonnen
+     and the old Indian epics. No corpses were harmed. One was hired.</p>
+</footer>
+
+<!-- ================= OVERLAYS ================= -->
+<div id="finale">
+  <div class="fin-inner">
+    <p class="kicker">The Ritual is Complete</p>
+    <h2 id="finaleTitle">YOU SLIP THE NOOSE</h2>
+    <p class="gate-note" id="finaleSub"></p>
+    <div class="fin-stats">
+      <div><b id="statRight">0</b><span>truths spoken</span></div>
+      <div><b id="statWrong">0</b><span>souls lost</span></div>
+      <div><b id="statTime">0s</b><span>in the tomb</span></div>
+    </div>
+    <button class="blood-btn" id="againBtn" type="button">Descend Again</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
